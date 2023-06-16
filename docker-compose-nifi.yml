@@ -1,0 +1,16 @@
+version: '2'
+services:
+  nifi:
+    image: apache/nifi:latest
+    restart: always
+    ports:
+      - "9091:80"
+    volumes:
+      - ./nifi-data:/opt/nifi/nifi-current/database_repository
+      - ./nifi-conf:/opt/nifi/nifi-current/conf
+    networks:
+      - backend
+networks:
+  backend:
+    external:
+      name: proxy
